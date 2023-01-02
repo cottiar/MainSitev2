@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🛒 Checkout
-        uses: actions/MainSitev2@v1.0
+        uses: actions/checkout@v1.0
       - name: 📦 Get LFTP
         run: sudo apt install lftp
       - name: 🛠️ Configure LFTP
