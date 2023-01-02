@@ -1,4 +1,4 @@
-name: 🚀 FTP Deploy
+name: 🚀 FTPS Deploy
 on: [push, workflow_dispatch]
 jobs:
   ftp-deploy:
