@@ -1,20 +1,20 @@
-#name: 🚀 FTPS Deploy
-##on: [push, workflow_dispatch]
-#on: [push]
-#jobs:
-#  ftps-deploy:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: 🚚 Get latest code
-#        uses: actions/checkout@v2
-#      - name: 📦 Get LFTP
-#        run: sudo apt install lftp
-#      - name: 🛠️ Configure LFTP
-#        run: |
-#          mkdir ~/.lftp
-#          echo "set ssl:ca-file ~/.lftp/certs.crt;set ssl:check-hostname no;" >> ~/.lftp/rc
-#          echo "${{ secrets.FTP_CERTS_BASE64 }}" | base64 --decode > ~/.lftp/certs.crt
-#      - name: 🔑 Load Secrets
-#        run: echo "machine ${{ secrets.FTP_HOSTNAME }} login ${{ secrets.FTP_USERNAME }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
-#      - name: 📁 Upload Folder
-#        run: lftp -e "mirror --parallel=100 -R ./ /domains/anugraha.nl/public_html/" ${{ secrets.FTP_HOSTNAME }} 
+name: 🚀 FTPS Deploy
+#on: [push, workflow_dispatch]
+on: [push]
+jobs:
+  ftps-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+      - name: 📦 Get LFTP
+        run: sudo apt install lftp
+      - name: 🛠️ Configure LFTP
+        run: |
+          mkdir ~/.lftp
+          echo "set ssl:ca-file ~/.lftp/certs.crt;set ssl:check-hostname no;" >> ~/.lftp/rc
+          echo "${{ secrets.FTP_CERTS_BASE64 }}" | base64 --decode > ~/.lftp/certs.crt
+      - name: 🔑 Load Secrets
+        run: echo "machine ${{ secrets.FTP_HOSTNAME }} login ${{ secrets.FTP_USERNAME }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
+      - name: 📁 Upload Folder
+        run: lftp -e "mirror --parallel=100 -R ./ /domains/anugraha.nl/public_html/" ${{ secrets.FTP_HOSTNAME }} 
