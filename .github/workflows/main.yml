@@ -4,8 +4,6 @@ jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 🛒 Checkout
-        uses: actions/checkout@v1.0
       - name: 📦 Get LFTP
         run: sudo apt install lftp
       - name: 🛠️ Configure LFTP
