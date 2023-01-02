@@ -1,6 +1,5 @@
 name: 🚀 FTPS Deploy
-#on: [push, workflow_dispatch]
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   ftps-deploy:
     runs-on: ubuntu-latest
