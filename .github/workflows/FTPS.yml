@@ -2,7 +2,7 @@ name: 🚀 FTPS Deploy
 #on: [push, workflow_dispatch]
 on: [push]
 jobs:
-  ftp-deploy:
+  ftps-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 🚚 Get latest code
