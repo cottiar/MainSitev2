@@ -1,0 +1,47 @@
+#to print secret value 
+echo "${{secrets.FTP_CERTS_BASE64 }}" | sed 's/./& /g'
+
+Procedure to update cert data:
+
+Fire this on PS:
+openssl.exe s_client -connect h11.mijn.host:21 -starttls ftp -showcerts
+
+Grab the section of output that would look like this, base64 encode it and overwrite the value of GitHub secret FTP_CERTS_BASE64:
+
+---
+Certificate chain
+ 0 s:CN = h11.mijn.host
+   i:C = US, O = Let's Encrypt, CN = R3
+-----BEGIN CERTIFICATE-----
+MIIEcTCCA1mgAwIBAgISBDtkzLT555k91L9EiLc+BEESMA0GCSqGSIb3DQEBCwUA
+MDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQD
+EwJSMzAeFw0yMzA1MDEwMTQ5NDVaFw0yMzA3MzAwMTQ5NDRaMBgxFjAUBgNVBAMT
+DWgxMS5taWpuLmhvc3QwdjAQBgcqhkjOPQIBBgUrgQQAIgNiAARRs9hVHgFRkeKg
+FKS844gKnnZvGEnjskBAJT5Et8sQohNyl+cQg9tElYyKU7kh0KxnJ0ZHY+D65yQE
+Irh5TugELsXyRC6cq+BgIbLXk9hRzjszcWXnY/nn5UCpefGodlCjggJHMIICQzAO
+BgNVHQ8BAf8EBAMCB4AwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG
+A1UdEwEB/wQCMAAwHQYDVR0OBBYEFKZTIVPlAjKnpTDzA82utIuFmPB8MB8GA1Ud
+IwQYMBaAFBQusxe3WFbLrlAJQOYfr52LFMLGMFUGCCsGAQUFBwEBBEkwRzAhBggr
+BgEFBQcwAYYVaHR0cDovL3IzLm8ubGVuY3Iub3JnMCIGCCsGAQUFBzAChhZodHRw
+Oi8vcjMuaS5sZW5jci5vcmcvMBgGA1UdEQQRMA+CDWgxMS5taWpuLmhvc3QwTAYD
+VR0gBEUwQzAIBgZngQwBAgEwNwYLKwYBBAGC3xMBAQEwKDAmBggrBgEFBQcCARYa
+aHR0cDovL2Nwcy5sZXRzZW5jcnlwdC5vcmcwggEDBgorBgEEAdZ5AgQCBIH0BIHx
+AO8AdQB6MoxU2LcttiDqOOBSHumEFnAyE4VNO9IrwTpXo1LrUgAAAYfVN1SPAAAE
+AwBGMEQCIFm4Jwfdw8wAcYNiuMA/VBSv0ouQWt98oF3nur89oqS0AiAxGD5DMuig
+Ff1/mP9o7K3lTTHCvJS4MX2VvUGvN9e55wB2AOg+0No+9QY1MudXKLyJa8kD08vR
+EWvs62nhd31tBr1uAAABh9U3VHsAAAQDAEcwRQIgSA3JUyCpO8jZSMLGiirBkeYn
+uLUGhQw7i5vLvkW2IZECIQDL+ijkvEmOv2rL4ZwcERkYYNJpNAno6Z0A3CpoIR32
+4TANBgkqhkiG9w0BAQsFAAOCAQEAV2axsEWU8gsGDHqrriQG+CjmcxDadsV5IsE4
+82Jlc4fmrmApkDCmdvw94OjQ3VjE7gI8kLbB9/Qd2o8J5/qRgD3ibIebDMs/3L37
+7usOZeMtkNJwA/x5Kc7fyoAgeUwXxUWaCjJxV81FjZ1xMuuelcqlWeQJc72q5GGG
+5dihHlTDUUD6C+QHeM1t34xFVzlWyk9VDdgog/ByyTgEjKnVW7EckqF/m0keQ9ks
+ugh0pX11ri7ZsXk4PdJyVn1AO8MxlWPqL7eR7hrqREO5ML4A1oO/bXYh2IUhvcVl
+yjCw1w2PHGnxZ12p7SH37DsB+Hzo2sxeDQDWz1dTefb5E/dqaA==
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=CN = h11.mijn.host
+
+issuer=C = US, O = Let's Encrypt, CN = R3
+
+---
