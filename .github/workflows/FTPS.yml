@@ -14,8 +14,6 @@ jobs:
           mkdir ~/.lftp                    
           echo "set ssl:ca-file ~/.lftp/certs.crt;set ssl:check-hostname no;" >> ~/.lftp/rc
           echo "${{ secrets.FTP_CERTS_BASE64 }}" | base64 --decode > ~/.lftp/certs.crt
-          echo "${{ secrets.FTP_USERNAME }}" | sed 's/./& /g'
-          echo "${{ secrets.FTP_PASSWORD }}" | sed 's/./& /g'
           sudo cp ~/.lftp/certs.crt /usr/local/share/ca-certificates/
           sudo update-ca-certificates
       - name: 🔑 Load Secrets
