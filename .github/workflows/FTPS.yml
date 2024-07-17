@@ -12,6 +12,9 @@ jobs:
       - name: 🛠️ Configure LFTP
         run: |
           mkdir ~/.lftp
+          apt update
+          apt upgrade
+          sudo dpkg-reconfigure ca-certificates
           echo "set ssl:ca-file ~/.lftp/certs.crt;set ssl:check-hostname no;" >> ~/.lftp/rc
           echo "${{ secrets.FTP_CERTS_BASE64 }}" | base64 --decode > ~/.lftp/certs.crt          
       - name: 🔑 Load Secrets
