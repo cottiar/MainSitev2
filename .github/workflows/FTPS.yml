@@ -11,12 +11,11 @@ jobs:
         run: sudo apt install lftp
       - name: 🛠️ Configure LFTP
         run: |
-          mkdir ~/.lftp
-          sudo openssl x509 -in ${{ secrets.FTP_CERTS_BASE64 }} -out $CERTIFICATE_CRT
-          sudo mv ./$CERTIFICATE_CRT /usr/local/share/ca-certificates/
-          sudo update-ca-certificates
+          mkdir ~/.lftp                    
           echo "set ssl:ca-file ~/.lftp/certs.crt;set ssl:check-hostname no;" >> ~/.lftp/rc
-          echo "${{ secrets.FTP_CERTS_BASE64 }}" | base64 --decode > ~/.lftp/certs.crt          
+          echo "${{ secrets.FTP_CERTS_BASE64 }}" | base64 --decode > ~/.lftp/certs.crt
+          sudo mv ~/.lftp/certs.crt /usr/local/share/ca-certificates/
+          sudo update-ca-certificates
       - name: 🔑 Load Secrets
         run: echo "machine ${{ secrets.FTP_HOSTNAME }} login ${{ secrets.FTP_USERNAME }} password ${{ secrets.FTP_PASSWORD }}" > ~/.netrc
       - name: 📁 Upload Folder
